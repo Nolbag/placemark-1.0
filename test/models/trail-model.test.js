@@ -1,28 +1,19 @@
 import { assert } from "chai";
 import { db } from "../../src/models/db.js";
-import { testPlaylists, testTracks, beethoven, mozart, concerto, testUsers } from "../fixtures.js";
+import { testTrail, testUsers, maggie } from "../fixtures.js";
 import { assertSubset } from "../test-utils.js";
 
-suite("Track Model tests", () => {
+suite("Trail Model tests", () => {
 
-  let beethovenList = null;
+setup(async () => {
+  db.init("mongo");
+  await db.trailStore.deleteAllTrails();
+});
 
-  setup(async () => {
-    db.init("mongo");
-    await db.playlistStore.deleteAllPlaylists();
-    await db.trackStore.deleteAllTracks();
-    beethovenList = await db.playlistStore.addPlaylist(beethoven);
-    for (let i = 0; i < testTracks.length; i += 1) {
-      // eslint-disable-next-line no-await-in-loop
-      testTracks[i] = await db.trackStore.addTrack(beethovenList._id, testTracks[i]);
-    }
-  });
-
-  test("create single track", async () => {
-    const mozartList = await db.playlistStore.addPlaylist(mozart);
-    const track = await db.trackStore.addTrack(mozartList._id, concerto)
-    assert.isNotNull(track._id);
-    assertSubset (concerto, track);
+  test("create single trail", async () => {
+    const trailList = await db.trailStore.addTrail(testTrail);
+    assert.isNotNull(trailList._id);
+    assertSubset (testTrail, trailList);
   });
 
   test("get multiple tracks", async () => {
