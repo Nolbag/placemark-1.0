@@ -1,14 +1,25 @@
 import { assert } from "chai";
 import { db } from "../../src/models/db.js";
-import { testTrail, testUsers, maggie } from "../fixtures.js";
+import { testTrail, testTrails, testUsers } from "../fixtures.js";
 import { assertSubset } from "../test-utils.js";
 
 suite("Trail Model tests", () => {
 
+let testUser = null;
+
 setup(async () => {
   db.init("mongo");
   await db.trailStore.deleteAllTrails();
-});
+  await db.userStore.deleteAll();
+  testUser = await db.userStore.addUser(testUsers[0]);
+  for (let i = 0; i < testTrails.length; i += 1) {
+  // eslint-disable-next-line no-await-in-loop
+  await db.trailStore.addTrail({
+    ...testTrails[i],
+    userid: testUser._id,
+    });
+  }
+  });
 
   test("create single trail", async () => {
     const trailList = await db.trailStore.addTrail(testTrail);
@@ -16,9 +27,9 @@ setup(async () => {
     assertSubset (testTrail, trailList);
   });
 
-  test("get multiple tracks", async () => {
-    const tracks = await db.trackStore.getTracksByPlaylistId(beethovenList._id);
-    assert.equal(tracks.length, testTracks.length)
+  test("get multiple trails", async () => {
+    const trails = await db.trailStore.getTrailsByUserId(testUser._id);
+    assert.equal(trails.length, testTrails.length)
   });
 
   test("delete all tracks", async () => {

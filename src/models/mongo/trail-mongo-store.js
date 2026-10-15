@@ -21,6 +21,11 @@ export const trailMongoStore = {
     return null;
   },
 
+  async getTrailsByUserId(userId) {
+    const trails = await Trail.find({ userid: userId }).lean();
+    return trails;
+  },
+
   async deleteTrail(id) {
     try {
       await Trail.deleteOne({ _id: id });

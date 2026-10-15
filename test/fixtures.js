@@ -1,13 +1,12 @@
 export const serviceUrl = "http://localhost:3000";
 
-export const maggie = {
+export const testUsers = [
+  {
   firstName: "Maggie",
   lastName: "Simpson",
   email: "maggie@simpson.com",
   password: "secret"
-};
-
-export const testUsers = [
+  },  
   {
     firstName: "Homer",
     lastName: "Simpson",
@@ -39,3 +38,17 @@ export const testTrail = {
   distance: 4.2,
   duration: 75,
 };
+
+export const secondTestTrail = {
+  name: "Test Lakeside Walk",
+  category: "Lakeside/Riverside",
+  format: "Out and Back",
+  difficulty: "Moderate",
+  location: "Test County",
+  latitude: 53.1,
+  longitude: -8.1,
+  distance: 6.3,
+  duration: 105,
+};
+
+export const testTrails = [testTrail, secondTestTrail];
