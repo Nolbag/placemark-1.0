@@ -13,10 +13,6 @@ export const trailMemStore = {
     return trail;
   },
 
-  async getTrailsByPlaylistId(id) {
-    return trails.filter((trail) => trail.playlistid === id);
-  },
-
   async getTrailById(id) {
     let foundTrail = trails.find((trail) => trail._id === id);
     if (!foundTrail) {
@@ -25,7 +21,7 @@ export const trailMemStore = {
     return foundTrail;
   },
 
-  async getUserTrails(userId) {
+  async getTrailsByUserId(userId) {
     let foundTrails = trails.filter((trail) => trail.userid === userId);
     if (!foundTrails) {
       foundTrails = null;

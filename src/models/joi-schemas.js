@@ -20,12 +20,34 @@ export const UserCredentialsSpec = {
   password: Joi.string().required(),
 };
 
-export const TrackSpec = {
-  title: Joi.string().required(),
-  artist: Joi.string().required(),
-  duration: Joi.number().allow("").optional(),
-};
+export const TrailSpec = Joi.object()
+  .keys({
+    name: Joi.string().example("Warren Way").required(),
 
-export const PlaylistSpec = {
-  title: Joi.string().required(),
-};
+    category: Joi.string()
+      .valid(
+        "Woodland/Forest",
+        "Hill/Mountain",
+        "Lakeside/Riverside",
+        "Bog/Moorland",
+        "Countryside/Farmland",
+        "Urban/Park",
+        "Mixed/Other",
+      ).example("Woodland/Forest").required(),
+
+    format: Joi.string().example("Loop").required(),
+    difficulty: Joi.string().example("Easy").required(),
+    location: Joi.string().example("Sligo").required(),
+
+    latitude: Joi.number().example(54.25).required(),
+    longitude: Joi.number().example(-8.59).required(),
+    distance: Joi.number().min(0).example(5.5).required(),
+    duration: Joi.number().min(0).example(90).required(),
+
+    _id: IdSpec,
+    userid: IdSpec,
+    __v: Joi.number(),
+  })
+  .label("TrailDetails");
+
+export const TrailArray = Joi.array().items(TrailSpec).label("TrailArray");
