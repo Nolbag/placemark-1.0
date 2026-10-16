@@ -1,33 +1,36 @@
 import { assert } from "chai";
 import { assertSubset } from "../test-utils.js";
 import { db } from "../../src/models/db.js";
-import { maggie, testUsers } from "../fixtures.js";
+import { testUsers } from "../fixtures.js";
 
 suite("User Model tests", () => {
+  let savedUsers = [];
+  db.init("mongo");
   setup(async () => {
-    db.init("mongo");
     await db.userStore.deleteAll();
-    for (let i = 0; i < testUsers.length; i += 1) {
+    savedUsers = [];
+        for (let i = 0; i < testUsers.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
-      testUsers[i] = await db.userStore.addUser(testUsers[i]);
+      const savedUser = await db.userStore.addUser({ ...testUsers[i] });
+      savedUsers.push(savedUser);
     }
   });
 
   test("create a user", async () => {
-    const newUser = await db.userStore.addUser(maggie);
-    assertSubset(maggie, newUser);
+    const newUser = await db.userStore.addUser(testUsers[0]);
+    assertSubset(testUsers[0], newUser);
   });
 
   test("delete all userApi", async () => {
     let returnedUsers = await db.userStore.getAllUsers();
-    assert.equal(returnedUsers.length, 3);
+    assert.equal(returnedUsers.length, 4);
     await db.userStore.deleteAll();
     returnedUsers = await db.userStore.getAllUsers();
     assert.equal(returnedUsers.length, 0);
   });
 
   test("get a user - success", async () => {
-    const user = await db.userStore.addUser(maggie);
+    const user = savedUsers[0];
     const returnedUser1 = await db.userStore.getUserById(user._id);
     assert.deepEqual(user, returnedUser1);
     const returnedUser2 = await db.userStore.getUserByEmail(user.email);
@@ -35,10 +38,11 @@ suite("User Model tests", () => {
   });
 
   test("delete One User - success", async () => {
-    await db.userStore.deleteUserById(testUsers[0]._id);
+    const deletedId = savedUsers[0]._id;
+    await db.userStore.deleteUserById(deletedId);
     const returnedUsers = await db.userStore.getAllUsers();
     assert.equal(returnedUsers.length, testUsers.length - 1);
-    const deletedUser = await db.userStore.getUserById(testUsers[0]._id);
+    const deletedUser = await db.userStore.getUserById(deletedId);
     assert.isNull(deletedUser);
   });
 

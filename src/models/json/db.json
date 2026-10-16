@@ -22,41 +22,120 @@
       "_id": "ae8201d0-89b5-44f2-abfd-fe33c31ea3eb"
     }
   ],
-  "playlists": [
+
+  "trails": [
     {
-      "title": "Beethoven Sonatas",
-      "_id": "1d7eca5d-78de-4618-a9e8-bdca2d976823"
+      "name": "Warren Way",
+      "category": "Woodland/Forest",
+      "format": "Out and Back",
+      "difficulty": "Easy",
+      "location": "Enniscrone, County Sligo",
+      "latitude": 54.178526,
+      "longitude": -9.120109,
+      "distance": 1.8,
+      "duration": 45,
+      "userid": "b1c22e9d-b050-47fe-8221-e6a2dd8f3b69"
+      
     },
     {
-      "title": "Beethoven Concertos",
-      "_id": "efb5b811-769c-4d1d-b486-02d7a2a0ac34"
+      "name": "Roundwood Reservoir Lower Vartry Trail",
+      "category": "Lakeside/Riverside",
+      "format": "Loop",
+      "difficulty": "Easy",
+      "location": "Roundwood, County Wicklow",
+      "latitude": 53.067517,
+      "longitude": -6.223062,
+      "distance": 7.6,
+      "duration": 120,
+      "userid": "b1c22e9d-b050-47fe-8221-e6a2dd8f3b69"
     },
     {
-      "title": "Beethoven Symphonies",
-      "_id": "60f5eb23-8f43-46a9-919e-1b204d08b4ef"
-    }
-  ],
-  "tracks": [
-    {
-      "title": "best song",
-      "artist": "best artist",
-      "duration": 3,
-      "_id": "39ffffac-4faf-4c0a-9d3e-f709c94eedda",
-      "playlistid": "05e0b36a-5200-4b66-8055-a7391d2bfb65"
+      "name": "Achill Island - Dooagh Loop",
+      "category": "Mixed/Other",
+      "format": "Loop",
+      "difficulty": "Easy",
+      "location": "Dooagh, Achill Island, County Mayo",
+      "latitude": 53.974,
+      "longitude": -10.082,
+      "distance": 4.4,
+      "duration": 60
     },
     {
-      "title": "asdf",
-      "artist": "asdf",
-      "duration": 0,
-      "_id": "2c6d5b69-f7bd-4ef8-8e4d-ee2b545e8a75",
-      "playlistid": "05e0b36a-5200-4b66-8055-a7391d2bfb65"
+      "name": "Abbey Wood Trail",
+      "category": "Woodland/Forest",
+      "format": "Loop",
+      "difficulty": "Moderate",
+      "location": "Fethard-on-Sea, County Wexford",
+      "latitude": 52.191,
+      "longitude": -6.816,
+      "distance": 2.8,
+      "duration": 90
     },
     {
-      "title": "test",
-      "artist": "test",
-      "duration": 0,
-      "_id": "01e96fad-16b8-41ae-a97c-0888f210b79b",
-      "playlistid": "c4d23abe-8756-409b-b785-84eb9bd2b967"
+      "name": "Ballintotis Lake Loop",
+      "category": "Lakeside/Riverside",
+      "format": "Loop",
+      "difficulty": "Easy",
+      "location": "Ballintotis, County Cork",
+      "latitude": 51.938,
+      "longitude": -7.833,
+      "distance": 2.1,
+      "duration": 50
+    },
+    {
+      "name": "Ballybunion Beach Walk",
+      "category": "Mixed/Other",
+      "format": "Loop",
+      "difficulty": "Moderate",
+      "location": "Ballybunion, County Kerry",
+      "latitude": 52.511,
+      "longitude": -9.669,
+      "distance": 7.2,
+      "duration": 120
+    },
+    {
+      "name": "Commons Loop",
+      "category": "Hill/Mountain",
+      "format": "Loop",
+      "difficulty": "Moderate",
+      "location": "Carlingford, County Louth",
+      "latitude": 54.0406,
+      "longitude": -6.18563,
+      "distance": 3.2,
+      "duration": 75
+    },
+    {
+      "name": "Howth Cliff Path Loop",
+      "category": "Mixed/Other",
+      "format": "Loop",
+      "difficulty": "Moderate",
+      "location": "Howth, County Dublin",
+      "latitude": 53.385,
+      "longitude": -6.066,
+      "distance": 7.8,
+      "duration": 120
+    },
+    {
+      "name": "Inis Nee Loop",
+      "category": "Mixed/Other",
+      "format": "Loop",
+      "difficulty": "Easy",
+      "location": "Roundstone, County Galway",
+      "latitude": 53.414361,
+      "longitude": -9.907476,
+      "distance": 4.9,
+      "duration": 135
+    },
+    {
+      "name": "Lisvarrinane - Padraig's Loop",
+      "category": "Woodland/Forest",
+      "format": "Loop",
+      "difficulty": "Easy",
+      "location": "Lisvarrinane, County Tipperary",
+      "latitude": 52.41182,
+      "longitude": -8.22692,
+      "distance": 6.7,
+      "duration": 150
     }
   ]
 }

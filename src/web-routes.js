@@ -1,6 +1,4 @@
-import { dashboardController } from "./controllers/dashboard-controller.js";
 import { aboutController } from "./controllers/about-controller.js";
-import { playlistController } from "./controllers/playlist-controller.js";
 import { accountsController } from "./controllers/accounts-controller.js";
 
 export const webRoutes = [
@@ -12,15 +10,7 @@ export const webRoutes = [
     { method: "POST", path: "/register", config: accountsController.signup },
     { method: "POST", path: "/authenticate", config: accountsController.login },
 
-    { method: "GET", path: "/dashboard", config: dashboardController.index },
     { method: "GET", path: "/about", config: aboutController.index },
-    { method: "GET", path: "/playlist/{id}", config: playlistController.index },
-
-    { method: "GET", path: "/dashboard/deleteplaylist/{id}", config: dashboardController.deletePlaylist },
-    { method: "GET", path: "/playlist/{id}/deletetrack/{trackid}", config: playlistController.deleteTrack },
-
-    { method: "POST", path: "/dashboard/addplaylist", config: dashboardController.addPlaylist },
-    { method: "POST", path: "/playlist/{id}/addtrack", config: playlistController.addTrack },
 
     { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } }
 

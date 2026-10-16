@@ -1,13 +1,12 @@
 export const serviceUrl = "http://localhost:3000";
 
-export const maggie = {
+export const testUsers = [
+  {
   firstName: "Maggie",
   lastName: "Simpson",
   email: "maggie@simpson.com",
   password: "secret"
-};
-
-export const testUsers = [
+  },  
   {
     firstName: "Homer",
     lastName: "Simpson",
@@ -28,46 +27,28 @@ export const testUsers = [
   }
 ];
 
-export const mozart = {
-  title: "Mozart Favourites"
+export const testTrail = {
+  name: "Test Woodland/Forest Walk",
+  category: "Woodland/Forest",
+  format: "Loop",
+  difficulty: "Easy",
+  location: "Test County",
+  latitude: 53.0,
+  longitude: -8.0,
+  distance: 4.2,
+  duration: 75,
 };
 
-export const concerto = {
-  "title": "Violin Concerto No. 3",
-  "artist": "Mozart",
-  "duration": 15
+export const secondTestTrail = {
+  name: "Test Lakeside Walk",
+  category: "Lakeside/Riverside",
+  format: "Out and Back",
+  difficulty: "Moderate",
+  location: "Test County",
+  latitude: 53.1,
+  longitude: -8.1,
+  distance: 6.3,
+  duration: 105,
 };
 
-export const beethoven = {
-  title: "Mozart Favourites"
-};
-
-export const testPlaylists = [
-  {
-    title: "Beethoven Sonatas"
-  },
-  {
-    title: "Beethoven Concertos"
-  },
-  {
-    title: "Beethoven Symphonies"
-  }
-];
-
-export const testTracks = [
-  {
-    "title": "Piano Sonata No. 3",
-    "artist": "Beethoven",
-    "duration": 5
-  },
-  {
-    "title": "Piano Sonata No. 7",
-    "artist": "Beethoven",
-    "duration": 6
-  },
-  {
-    "title": "Piano Sonata No. 10",
-    "artist": "Beethoven",
-    "duration": 4
-  }
-];
+export const testTrails = [testTrail, secondTestTrail];
