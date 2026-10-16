@@ -8,8 +8,9 @@ suite("Trail Model tests", () => {
   let testUser = null;
   let savedTrails = [];
   
+  db.init("mongo");
+
   setup(async () => {
-    db.init("mongo");
     await db.trailStore.deleteAllTrails();
     await db.userStore.deleteAll();
     testUser = await db.userStore.addUser(testUsers[0]);
