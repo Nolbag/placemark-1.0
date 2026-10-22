@@ -1,0 +1,12 @@
+{{> menu active="trails"}}
+<section class="section">
+  <h1 class="title">{{title}}</h1>
+  {{#each trails}}
+    <article class="box">
+      <h2 class="subtitle">{{name}}</h2>
+      <p>{{location}}</p>
+      <p>{{distance}} km · {{duration}} minutes · {{difficulty}}</p>
+      <p>{{category}} · {{format}}</p>
+    </article>
+  {{/each}}
+</section>
