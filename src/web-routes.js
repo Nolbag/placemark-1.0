@@ -11,8 +11,9 @@ export const webRoutes = [
     { method: "POST", path: "/register", config: accountsController.signup },
     { method: "POST", path: "/authenticate", config: accountsController.login },
     { method: "GET", path: "/about", config: aboutController.index },
-    
+
     { method: "GET", path: "/trails", config: trailController.index },
+    { method: "GET", path: "/trails/{id}", config: trailController.showTrail },
 
     { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } }
 
