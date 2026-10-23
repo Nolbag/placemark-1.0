@@ -8,5 +8,12 @@
   <p>{{trail.difficulty}}</p>
   <p>{{trail.category}} · {{trail.format}}</p>
 
+  {{#if isOwner}}
+    <a class="button" href="/trails/{{trail._id}}/edit">Edit trail</a>
+    <form action="/trails/{{trail._id}}/delete" method="POST">
+      <button class="button is-danger" type="submit">Delete trail</button>
+    </form>
+  {{/if}}
+
   <a href="/trails">Back to trails</a>
 </section>

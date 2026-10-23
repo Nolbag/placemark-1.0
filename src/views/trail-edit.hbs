@@ -1,0 +1,55 @@
+{{> menu active="trails"}}
+
+<section class="section">
+  <h1 class="title">Edit trail</h1>
+
+  <form class="box" action="/trails/{{trail._id}}/edit" method="POST">
+    <div class="field">
+      <label class="label" for="name">Name</label>
+      <input class="input" id="name" type="text" name="name" value="{{trail.name}}" required>
+    </div>
+
+    <div class="field">
+      <label class="label" for="category">Category</label>
+      <input class="input" id="category" type="text" name="category" value="{{trail.category}}" required>
+    </div>
+
+    <div class="field">
+      <label class="label" for="format">Format</label>
+      <input class="input" id="format" type="text" name="format" value="{{trail.format}}" required>
+    </div>
+
+    <div class="field">
+      <label class="label" for="difficulty">Difficulty</label>
+      <input class="input" id="difficulty" type="text" name="difficulty" value="{{trail.difficulty}}" required>
+    </div>
+
+    <div class="field">
+      <label class="label" for="location">Location</label>
+      <input class="input" id="location" type="text" name="location" value="{{trail.location}}" required>
+    </div>
+
+    <div class="field">
+      <label class="label" for="latitude">Latitude</label>
+      <input class="input" id="latitude" type="number" name="latitude" value="{{trail.latitude}}" step="any" required>
+    </div>
+
+    <div class="field">
+      <label class="label" for="longitude">Longitude</label>
+      <input class="input" id="longitude" type="number" name="longitude" value="{{trail.longitude}}" step="any" required>
+    </div>
+
+    <div class="field">
+      <label class="label" for="distance">Distance</label>
+      <input class="input" id="distance" type="number" name="distance" value="{{trail.distance}}" min="0" step="any" required>
+    </div>
+
+    <div class="field">
+      <label class="label" for="duration">Duration in minutes</label>
+      <input class="input" id="duration" type="number" name="duration" value="{{trail.duration}}" min="0" required>
+    </div>
+
+    <button class="button is-link" type="submit">Save changes</button>
+    <a class="button" href="/trails/{{trail._id}}">Cancel</a>
+  </form>
+</section>

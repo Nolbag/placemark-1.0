@@ -14,6 +14,11 @@ export const webRoutes = [
 
     { method: "GET", path: "/trails", config: trailController.index },
     { method: "GET", path: "/trails/{id}", config: trailController.showTrail },
+    { method: "GET", path: "/trails/{id}/edit", config: trailController.showEditTrail },
+    { method: "POST", path: "/trails/{id}/edit", config: trailController.updateTrail },
+    { method: "POST", path: "/trails/{id}/delete", config: trailController.deleteTrail },
+    { method: "POST", path: "/trails/add", config: trailController.addTrail },
+
 
     { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } }
 

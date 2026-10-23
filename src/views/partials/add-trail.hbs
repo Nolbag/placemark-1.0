@@ -1,0 +1,61 @@
+<form class="box" action="/trails/add" method="POST">
+  <h2 class="subtitle">Add a trail</h2>
+
+  <div class="field">
+    <label class="label" for="name">Name</label>
+    <input class="input" id="name" type="text" name="name" required>
+  </div>
+
+  <div class="field">
+    <label class="label" for="category">Category</label>
+    <div class="select">
+      <select id="category" name="category" required>
+        <option value="">Select a category</option>
+        <option value="Woodland/Forest">Woodland/Forest</option>
+        <option value="Hill/Mountain">Hill/Mountain</option>
+        <option value="Lakeside/Riverside">Lakeside/Riverside</option>
+        <option value="Bog/Moorland">Bog/Moorland</option>
+        <option value="Countryside/Farmland">Countryside/Farmland</option>
+        <option value="Urban/Park">Urban/Park</option>
+        <option value="Mixed/Other">Mixed/Other</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label" for="format">Format</label>
+    <input class="input" id="format" type="text" name="format" required>
+  </div>
+
+  <div class="field">
+    <label class="label" for="difficulty">Difficulty</label>
+    <input class="input" id="difficulty" type="text" name="difficulty" required>
+  </div>
+
+  <div class="field">
+    <label class="label" for="location">Location</label>
+    <input class="input" id="location" type="text" name="location" required>
+  </div>
+
+  <div class="field">
+    <label class="label" for="latitude">Latitude</label>
+    <input class="input" id="latitude" type="number" name="latitude" step="any" required>
+  </div>
+
+  <div class="field">
+    <label class="label" for="longitude">Longitude</label>
+    <input class="input" id="longitude" type="number" name="longitude" step="any" required>
+  </div>
+
+  <div class="field">
+    <label class="label" for="distance">Distance</label>
+    <input class="input" id="distance" type="number" name="distance" min="0" step="any" required>
+  </div>
+
+  <div class="field">
+    <label class="label" for="duration">Duration in minutes</label>
+    <input class="input" id="duration" type="number" name="duration" min="0" required>
+  </div>
+
+  <button class="button is-link" type="submit">Add trail</button>
+</form>
