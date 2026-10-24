@@ -1,24 +1,44 @@
 import { assert } from "chai";
 import { assertSubset } from "../test-utils.js";
 import { placemarkService } from "./placemark-service.js";
-import { testTrail, testTrails, testUsers } from "../fixtures.js";
+import { testTrail, testTrails, maggie, maggieCredentials } from "../fixtures.js";
 
 suite("Trail API tests", () => {
   let testUser = null;
   let savedTrails = [];
 
-  setup(async () => {
-    await placemarkService.deleteAllTrails();
-    await placemarkService.deleteAllUsers();
-    testUser = await placemarkService.createUser({ ...testUsers[0] });
-    savedTrails = [];
-    for (let i = 0; i < testTrails.length; i += 1) {
-      // eslint-disable-next-line no-await-in-loop
-      savedTrails[i] = await placemarkService.createTrail({
-        ...testTrails[i],
-        userid: testUser._id,
-      });
-    }
+setup(async () => {
+  placemarkService.clearAuth();
+
+  await placemarkService.createUser(maggie);
+  await placemarkService.authenticate(maggieCredentials);
+
+  await placemarkService.deleteAllTrails();
+  await placemarkService.deleteAllUsers();
+
+  testUser = await placemarkService.createUser(maggie);
+  await placemarkService.authenticate(maggieCredentials);
+
+  savedTrails = [];
+
+  for (let i = 0; i < testTrails.length; i += 1) {
+    // eslint-disable-next-line no-await-in-loop
+    savedTrails[i] = await placemarkService.createTrail({
+      ...testTrails[i],
+      userid: testUser._id,
+    });
+  }
+});
+
+  test("rejects unauthenticated trail request", async () => {
+  placemarkService.clearAuth();
+
+  try {
+    await placemarkService.getAllTrails();
+    assert.fail("Request should be rejected");
+  } catch (error) {
+    assert.equal(error.response.status, 401);
+  }
   });
 
   test("create trail", async () => {

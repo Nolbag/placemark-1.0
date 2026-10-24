@@ -3,11 +3,13 @@ import Joi from "joi";
 import Vision from "@hapi/vision";
 import Inert from "@hapi/inert";
 import HapiSwagger from "hapi-swagger";
+import jwt from "hapi-auth-jwt2";
 import Handlebars from "handlebars";
 import path from "path";
 import { fileURLToPath } from "url";
 import Cookie from "@hapi/cookie";
 import dotenv from "dotenv";
+import { validate } from "./api/jwt-utils.js";
 import { webRoutes } from "./web-routes.js";
 import { apiRoutes } from "./api-routes.js";
 import { db } from "./models/db.js";
@@ -24,9 +26,17 @@ const __dirname = path.dirname(__filename);
 
 const swaggerOptions = {
   info: {
-    title: "Playtime API",
-    version: "0.1",
+    title: "Placemark API",
+    version: "1.0",
   },
+  securityDefinitions: {
+    jwt: {
+      type: "apiKey",
+      name: "Authorization",
+      in: "header",
+    },
+  },
+  security: [{ jwt: [] }],
 };
 
 async function init() {
@@ -38,6 +48,7 @@ async function init() {
   await server.register(Vision);
   await server.register(Cookie);
   await server.register(Inert);
+  await server.register(jwt);
   server.validator(Joi);
 
   await server.register([
@@ -58,6 +69,13 @@ async function init() {
     redirectTo: "/",
     validate: accountsController.validate,
   });
+
+    server.auth.strategy("jwt", "jwt", {
+    key: process.env.COOKIE_PASSWORD,
+    validate: validate,
+    verifyOptions: { algorithms: ["HS256"] }
+  });
+
   server.auth.default("session");
 
   server.views({

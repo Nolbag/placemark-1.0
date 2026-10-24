@@ -1,24 +1,25 @@
 import Joi from "joi";
 
 export const IdSpec = Joi.alternatives().try(Joi.string(), Joi.object()).description("a valid ID");
-                                                                                     
-export const UserSpec = Joi.object()
+
+export const UserCredentialsSpec = Joi.object()
   .keys({
-    firstName: Joi.string().example("Homer").required(),
-    lastName: Joi.string().example("Simpson").required(),
     email: Joi.string().email().example("homer@simpson.com").required(),
     password: Joi.string().example("secret").required(),
-    _id: IdSpec,
-    __v: Joi.number(),
   })
-  .label("UserDetails");
+  .label("UserCredentials");
 
-export const UserArray = Joi.array().items(UserSpec).label("UserArray");
+export const UserSpec = UserCredentialsSpec.keys({
+  firstName: Joi.string().example("Homer").required(),
+  lastName: Joi.string().example("Simpson").required(),
+}).label("UserDetails");
 
-export const UserCredentialsSpec = {
-  email: Joi.string().email().required(),
-  password: Joi.string().required(),
-};
+export const UserSpecPlus = UserSpec.keys({
+  _id: IdSpec,
+  __v: Joi.number(),
+}).label("UserDetailsPlus");
+
+export const UserArray = Joi.array().items(UserSpecPlus).label("UserArray");
 
 export const TrailSpec = Joi.object()
   .keys({
@@ -33,7 +34,9 @@ export const TrailSpec = Joi.object()
         "Countryside/Farmland",
         "Urban/Park",
         "Mixed/Other",
-      ).example("Woodland/Forest").required(),
+      )
+      .example("Woodland/Forest")
+      .required(),
 
     format: Joi.string().example("Loop").required(),
     difficulty: Joi.string().example("Easy").required(),
@@ -44,10 +47,20 @@ export const TrailSpec = Joi.object()
     distance: Joi.number().min(0).example(5.5).required(),
     duration: Joi.number().min(0).example(90).required(),
 
-    _id: IdSpec,
     userid: IdSpec,
-    __v: Joi.number(),
   })
-  .label("TrailDetails");
+  .label("Trail");
 
-export const TrailArray = Joi.array().items(TrailSpec).label("TrailArray");
+export const TrailSpecPlus = TrailSpec.keys({
+  _id: IdSpec,
+  __v: Joi.number(),
+}).label("TrailPlus");
+
+export const TrailArraySpec = Joi.array().items(TrailSpecPlus).label("TrailArray");
+
+export const JwtAuth = Joi.object()
+  .keys({
+    success: Joi.boolean().example(true).required(),
+    token: Joi.string().required(),
+  })
+  .label("JwtAuth");

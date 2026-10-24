@@ -1,69 +1,113 @@
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
+import { IdSpec, TrailSpec, TrailSpecPlus, TrailArraySpec } from "../models/joi-schemas.js";
+import { validationError } from "./logger.js";
 
 export const trailApi = {
   find: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
-        const trails = await db.trailStore.getAllTrails();
-        return trails;
+        return await db.trailStore.getAllTrails();
       } catch (err) {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Get all trails",
+    notes: "Returns all trails",
+    response: { schema: TrailArraySpec, failAction: validationError },
   },
 
   findOne: {
-    auth: false,
-    async handler(request) {
+    auth: {
+      strategy: "jwt",
+    },
+    handler: async function (request) {
       try {
         const trail = await db.trailStore.getTrailById(request.params.id);
+
         if (!trail) {
           return Boom.notFound("No trail with this id");
         }
+
         return trail;
       } catch (err) {
         return Boom.serverUnavailable("No trail with this id");
       }
     },
+    tags: ["api"],
+    description: "Find a trail",
+    notes: "Returns one trail",
+    validate: {
+      params: { id: IdSpec },
+      failAction: validationError,
+    },
+    response: { schema: TrailSpecPlus, failAction: validationError },
   },
 
   create: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const trail = await db.trailStore.addTrail(request.payload);
+
         if (trail) {
           return h.response(trail).code(201);
         }
-        return Boom.badImplementation("error creating trail");
+
+        return Boom.badImplementation("Error creating trail");
       } catch (err) {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Create a trail",
+    notes: "Returns the newly created trail",
+    validate: {
+      payload: TrailSpec,
+      failAction: validationError,
+    },
+    response: { schema: TrailSpecPlus, failAction: validationError },
   },
 
-update: {
-  auth: false,
-  handler: async (request) => {
-    try {
-      const trail = await db.trailStore.getTrailById(request.params.id);
+  update: {
+    auth: {
+      strategy: "jwt",
+    },
+    handler: async function (request) {
+      try {
+        const trail = await db.trailStore.getTrailById(request.params.id);
 
-      if (!trail) {
-        return Boom.notFound("No trail with this id");
+        if (!trail) {
+          return Boom.notFound("No trail with this id");
+        }
+
+        await db.trailStore.updateTrail(trail, request.payload);
+        return db.trailStore.getTrailById(request.params.id);
+      } catch (err) {
+        return Boom.serverUnavailable("Database Error");
       }
-
-      await db.trailStore.updateTrail(trail, request.payload);
-      return await db.trailStore.getTrailById(request.params.id);
-    } catch (err) {
-      return Boom.serverUnavailable("Database Error");
-    }
+    },
+    tags: ["api"],
+    description: "Update a trail",
+    notes: "Returns the updated trail",
+    validate: {
+      params: { id: IdSpec },
+      payload: TrailSpec,
+      failAction: validationError,
+    },
+    response: { schema: TrailSpecPlus, failAction: validationError },
   },
-},
 
   deleteAll: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         await db.trailStore.deleteAllTrails();
@@ -72,21 +116,33 @@ update: {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    tags: ["api"],
+    description: "Delete all trails",
   },
 
   deleteOne: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function (request, h) {
       try {
         const trail = await db.trailStore.getTrailById(request.params.id);
+
         if (!trail) {
-          return Boom.notFound("No Trail with this id");
+          return Boom.notFound("No trail with this id");
         }
+
         await db.trailStore.deleteTrail(trail._id);
         return h.response().code(204);
       } catch (err) {
-        return Boom.serverUnavailable("No Trail with this id");
+        return Boom.serverUnavailable("No trail with this id");
       }
+    },
+    tags: ["api"],
+    description: "Delete a trail",
+    validate: {
+      params: { id: IdSpec },
+      failAction: validationError,
     },
   },
 };

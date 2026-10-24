@@ -54,4 +54,16 @@ export const placemarkService = {
   const res = await axios.put(`${this.placemarkUrl}/api/trails/${id}`, trail);
   return res.data;
   },
+
+    async authenticate(user) {
+    const response = await axios.post(`${this.placemarkUrl}/api/users/authenticate`, user);
+    // eslint-disable-next-line dot-notation, prefer-template
+    axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.token;
+    return response.data;
+  },
+
+  async clearAuth() {
+    // eslint-disable-next-line dot-notation
+    axios.defaults.headers.common["Authorization"] = "";
+  },
 }
