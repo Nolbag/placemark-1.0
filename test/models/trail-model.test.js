@@ -70,4 +70,17 @@ suite("Trail Model tests", () => {
     const trails = await db.trailStore.getTrailsByUserId(testUser._id);
     assert.equal(trails.length, testTrails.length);
   });
+
+  test("update one trail - success", async () => {
+  const trail = savedTrails[0];
+  const updatedTrail = {
+    ...trail,
+    name: "Updated Woodland Walk",
+    distance: 8.5,
+  };
+  await db.trailStore.updateTrail(trail, updatedTrail);
+  const savedTrail = await db.trailStore.getTrailById(trail._id);
+  assert.equal(savedTrail.name, "Updated Woodland Walk");
+  assert.equal(savedTrail.distance, 8.5);
+});
 });

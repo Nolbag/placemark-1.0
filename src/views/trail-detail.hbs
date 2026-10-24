@@ -1,19 +1,86 @@
 {{> menu active="trails"}}
 
 <section class="section">
-  <h1 class="title">{{trail.name}}</h1>
+  <a href="/trails">← Back to trails</a>
 
-  <p>{{trail.location}}</p>
-  <p>{{trail.distance}} km · {{trail.duration}} minutes</p>
-  <p>{{trail.difficulty}}</p>
-  <p>{{trail.category}} · {{trail.format}}</p>
+  <div class="level mt-5">
+    <div class="level-left">
+      <div>
+        <h1 class="title">{{trail.name}}</h1>
+        <p class="subtitle">{{trail.location}}</p>
+      </div>
+    </div>
 
-  {{#if isOwner}}
-    <a class="button" href="/trails/{{trail._id}}/edit">Edit trail</a>
-    <form action="/trails/{{trail._id}}/delete" method="POST">
-      <button class="button is-danger" type="submit">Delete trail</button>
-    </form>
-  {{/if}}
+    {{#if isOwner}}
+      <div class="level-right">
+        <a class="button is-light mr-2" href="/trails/{{trail._id}}/edit">
+          Edit
+        </a>
 
-  <a href="/trails">Back to trails</a>
+        <form action="/trails/{{trail._id}}/delete" method="POST">
+          <button class="button is-danger" type="submit">
+            Delete
+          </button>
+        </form>
+      </div>
+    {{/if}}
+  </div>
+
+  <div class="tags">
+    <span class="tag is-info">{{trail.category}}</span>
+    <span class="tag">{{trail.format}}</span>
+    <span class="tag is-warning">{{trail.difficulty}}</span>
+  </div>
+
+  <div class="columns mt-5">
+    <div class="column is-half">
+      <div class="box">
+        <h2 class="title is-4">Trail information</h2>
+
+        <hr>
+
+        <div class="level">
+          <div>
+            <p class="heading">Distance</p>
+            <p class="title is-5">{{trail.distance}} km</p>
+          </div>
+
+          <div>
+            <p class="heading">Duration</p>
+            <p class="title is-5">{{trail.duration}} mins</p>
+          </div>
+        </div>
+
+        <div class="columns">
+          <div class="column">
+            <p class="heading">Format</p>
+            <p>{{trail.format}}</p>
+          </div>
+
+          <div class="column">
+            <p class="heading">Difficulty</p>
+            <p>{{trail.difficulty}}</p>
+          </div>
+        </div>
+
+        <p class="heading">Category</p>
+        <p>{{trail.category}}</p>
+      </div>
+    </div>
+
+    <div class="column is-half">
+      <div class="box">
+        <h2 class="title is-4">Location</h2>
+
+        <div class="has-background-light p-6 has-text-centered">
+          <p class="title is-5">Map coming soon</p>
+        </div>
+
+        <p class="mt-4">
+          <strong>Coordinates:</strong>
+          {{trail.latitude}}, {{trail.longitude}}
+        </p>
+      </div>
+    </div>
+  </div>
 </section>
