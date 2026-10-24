@@ -99,6 +99,11 @@ export const userApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+
+    tags: ["api"],
+    description: "Authenticate a user",
+    notes: "Returns a JWT when the email and password are valid",
+
     validate: {
       payload: UserCredentialsSpec,
       failAction: validationError,
