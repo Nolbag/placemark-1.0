@@ -1,0 +1,83 @@
+{{> menu active="trails"}}
+
+<section class="hero is-light">
+  <div class="hero-body">
+    <h1 class="title">Irish day walks</h1>
+    <p class="subtitle">Find a trail that suits your day.</p>
+  </div>
+</section>
+
+<section class="section">
+  <form method="GET" action="/trails" class="box">
+    <div class="columns is-multiline">
+      <div class="column">
+        <label class="label" for="filter-category">Category</label>
+        <div class="select is-fullwidth">
+          <select id="filter-category" name="category">
+            <option value="">All categories</option>
+            <option value="Woodland/Forest">Woodland/Forest</option>
+            <option value="Hill/Mountain">Hill/Mountain</option>
+            <option value="Lakeside/Riverside">Lakeside/Riverside</option>
+            <option value="Bog/Moorland">Bog/Moorland</option>
+            <option value="Countryside/Farmland">Countryside/Farmland</option>
+            <option value="Urban/Park">Urban/Park</option>
+            <option value="Mixed/Other">Mixed/Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="column">
+        <label class="label" for="filter-format">Format</label>
+        <div class="select is-fullwidth">
+          <select id="filter-format" name="format">
+            <option value="">All formats</option>
+            <option value="Loop">Loop</option>
+            <option value="Linear">Linear</option>
+            <option value="Out and Back">Out and Back</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="column">
+        <label class="label" for="filter-difficulty">Difficulty</label>
+        <div class="select is-fullwidth">
+          <select id="filter-difficulty" name="difficulty">
+            <option value="">All difficulties</option>
+            <option value="Easy">Easy</option>
+            <option value="Moderate">Moderate</option>
+            <option value="Hard">Hard</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="column is-narrow is-flex is-align-items-flex-end">
+        <button class="button is-link mr-2" type="submit">
+          Apply filters
+        </button>
+        <a class="button" href="/trails">Clear</a>
+      </div>
+    </div>
+  </form>
+
+  <div class="level">
+    <div class="level-left">
+      <h2 class="title is-4">Available trails</h2>
+    </div>
+
+    <div class="level-right">
+      <a class="button is-primary" href="#add-trail">
+        Add trail
+      </a>
+    </div>
+  </div>
+
+  <div class="columns is-multiline">
+    {{#each trails}}
+      {{> trail-card}}
+    {{/each}}
+  </div>
+
+  <div id="add-trail" class="mt-6">
+    {{> add-trail}}
+  </div>
+</section>

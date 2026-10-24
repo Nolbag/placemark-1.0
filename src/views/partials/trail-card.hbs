@@ -1,0 +1,36 @@
+<div class="column is-half-tablet is-one-third-desktop">
+  <article class="card is-flex is-flex-direction-column">
+    <div class="card-content">
+      <p class="title is-5">{{name}}</p>
+      <p class="subtitle is-6">{{location}}</p>
+
+      <div class="tags">
+        <span class="tag is-info">{{category}}</span>
+        <span class="tag">{{format}}</span>
+        <span class="tag is-warning">{{difficulty}}</span>
+      </div>
+
+      <div class="level is-mobile">
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Distance</p>
+            <p>{{distance}} km</p>
+          </div>
+        </div>
+
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Duration</p>
+            <p>{{duration}} mins</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="card-footer mt-auto">
+      <a class="card-footer-item" href="/trails/{{_id}}">
+        View trail
+      </a>
+    </footer>
+  </article>
+</div>
