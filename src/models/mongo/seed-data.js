@@ -1,0 +1,160 @@
+export const seedData = {
+  users: {
+    _model: "User",
+
+    homer: {
+      firstName: "Homer",
+      lastName: "Simpson",
+      email: "homer@simpson.com",
+      password: "secret",
+    },
+
+    marge: {
+      firstName: "Marge",
+      lastName: "Simpson",
+      email: "marge@simpson.com",
+      password: "secret",
+    },
+
+    bart: {
+      firstName: "Bart",
+      lastName: "Simpson",
+      email: "bart@simpson.com",
+      password: "secret",
+    },
+  },
+
+  trails: {
+    _model: "Trail",
+
+    warrenWay: {
+      name: "Warren Way",
+      category: "Woodland/Forest",
+      format: "Out and Back",
+      difficulty: "Easy",
+      location: "Enniscrone, County Sligo",
+      latitude: 54.178526,
+      longitude: -9.120109,
+      distance: 1.8,
+      duration: 45,
+      userid: "->users.homer",
+    },
+
+    roundwoodTrail: {
+      name: "Roundwood Reservoir Lower Vartry Trail",
+      category: "Lakeside/Riverside",
+      format: "Loop",
+      difficulty: "Easy",
+      location: "Roundwood, County Wicklow",
+      latitude: 53.067517,
+      longitude: -6.223062,
+      distance: 7.6,
+      duration: 120,
+      userid: "->users.homer",
+    },
+
+    achillLoop: {
+      name: "Achill Island - Dooagh Loop",
+      category: "Mixed/Other",
+      format: "Loop",
+      difficulty: "Easy",
+      location: "Dooagh, Achill Island, County Mayo",
+      latitude: 53.974,
+      longitude: -10.082,
+      distance: 4.4,
+      duration: 60,
+      userid: "->users.marge",
+    },
+
+    abbeyWood: {
+      name: "Abbey Wood Trail",
+      category: "Woodland/Forest",
+      format: "Loop",
+      difficulty: "Moderate",
+      location: "Fethard-on-Sea, County Wexford",
+      latitude: 52.191,
+      longitude: -6.816,
+      distance: 2.8,
+      duration: 90,
+      userid: "->users.marge",
+    },
+
+    ballintotisLake: {
+      name: "Ballintotis Lake Loop",
+      category: "Lakeside/Riverside",
+      format: "Loop",
+      difficulty: "Easy",
+      location: "Ballintotis, County Cork",
+      latitude: 51.938,
+      longitude: -7.833,
+      distance: 2.1,
+      duration: 50,
+      userid: "->users.marge",
+    },
+
+    ballybunionBeach: {
+      name: "Ballybunion Beach Walk",
+      category: "Mixed/Other",
+      format: "Loop",
+      difficulty: "Moderate",
+      location: "Ballybunion, County Kerry",
+      latitude: 52.511,
+      longitude: -9.669,
+      distance: 7.2,
+      duration: 120,
+      userid: "->users.bart",
+    },
+
+    commonsLoop: {
+      name: "Commons Loop",
+      category: "Hill/Mountain",
+      format: "Loop",
+      difficulty: "Moderate",
+      location: "Carlingford, County Louth",
+      latitude: 54.0406,
+      longitude: -6.18563,
+      distance: 3.2,
+      duration: 75,
+      userid: "->users.bart",
+    },
+
+    howthCliffPath: {
+      name: "Howth Cliff Path Loop",
+      category: "Mixed/Other",
+      format: "Loop",
+      difficulty: "Moderate",
+      location: "Howth, County Dublin",
+      latitude: 53.385,
+      longitude: -6.066,
+      distance: 7.8,
+      duration: 120,
+      userid: "->users.bart",
+    },
+
+    inisNeeLoop: {
+      name: "Inis Nee Loop",
+      category: "Mixed/Other",
+      format: "Loop",
+      difficulty: "Easy",
+      location: "Roundstone, County Galway",
+      latitude: 53.414361,
+      longitude: -9.907476,
+      distance: 4.9,
+      duration: 135,
+      userid: "->users.homer",
+    },
+
+    padraigsLoop: {
+      name: "Lisvarrinane - Padraig's Loop",
+      category: "Woodland/Forest",
+      format: "Loop",
+      difficulty: "Easy",
+      location: "Lisvarrinane, County Tipperary",
+      latitude: 52.41182,
+      longitude: -8.22692,
+      distance: 6.7,
+      duration: 150,
+      userid: "->users.homer",
+    },
+  },
+};

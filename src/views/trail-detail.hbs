@@ -66,21 +66,44 @@
         <p class="heading">Category</p>
         <p>{{trail.category}}</p>
       </div>
-    </div>
 
-    <div class="column is-half">
-      <div class="box">
+      <div class="box mt-5">
         <h2 class="title is-4">Location</h2>
+        <!-- https://leafletjs.com/examples/quick-start/ -->
+        <div
+          id="trail-map"
+          data-latitude="{{trail.latitude}}"
+          data-longitude="{{trail.longitude}}"
+          data-name="{{trail.name}}"
+          style="height: 320px;"
+        ></div>
 
-        <div class="has-background-light p-6 has-text-centered">
-          <p class="title is-5">Map coming soon</p>
-        </div>
+        <script>
+          const mapElement = document.getElementById("trail-map");
+          const latitude = Number(mapElement.dataset.latitude);
+          const longitude = Number(mapElement.dataset.longitude);
+
+          const map = L.map(mapElement).setView([latitude, longitude], 13);
+
+          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: "&copy; OpenStreetMap contributors",
+          }).addTo(map);
+
+          L.marker([latitude, longitude])
+            .addTo(map)
+            .bindPopup(mapElement.dataset.name)
+            .openPopup();
+        </script>
 
         <p class="mt-4">
           <strong>Coordinates:</strong>
           {{trail.latitude}}, {{trail.longitude}}
         </p>
       </div>
+    </div>
+
+    <div class="column is-half">
+      {{> trail-image}}
     </div>
   </div>
 </section>

@@ -41,6 +41,7 @@ export const trailMongoStore = {
   async updateTrail(trail, updatedTrail) {
     const trailDoc = await Trail.findOne({ _id: trail._id });
     trailDoc.name = updatedTrail.name;
+    trailDoc.img = updatedTrail.img;
     trailDoc.category = updatedTrail.category;
     trailDoc.format = updatedTrail.format;
     trailDoc.difficulty = updatedTrail.difficulty;

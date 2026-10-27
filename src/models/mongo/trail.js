@@ -4,6 +4,7 @@ const { Schema } = Mongoose;
 
 const trailSchema = new Schema({
   name: String,
+  img: String,
   category: {
     type: String,
     enum: ["Woodland/Forest",

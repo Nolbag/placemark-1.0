@@ -18,7 +18,7 @@ export const webRoutes = [
     { method: "POST", path: "/trails/{id}/edit", config: trailController.updateTrail },
     { method: "POST", path: "/trails/{id}/delete", config: trailController.deleteTrail },
     { method: "POST", path: "/trails/add", config: trailController.addTrail },
-
+    { method: "POST", path: "/trails/{id}/uploadimage", config: trailController.uploadImage, },
 
     { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } }
 
