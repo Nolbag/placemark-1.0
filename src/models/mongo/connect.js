@@ -32,7 +32,7 @@ export function connectMongo() {
 
   db.once("open", function () {
     console.log(`database connected to ${this.name} on ${this.host}`);
-
+    // https://www.geeksforgeeks.org/node-js/what-is-node_env-in-node-js/
     if (process.env.NODE_ENV !== "test") {
       seed();
     }
