@@ -1,5 +1,6 @@
 import { db } from "../models/db.js";
 import { TrailSpec } from "../models/joi-schemas.js";
+import { imageStore } from "../models/image-store.js";
 
 export const trailController = {
   index: {
@@ -69,6 +70,33 @@ export const trailController = {
     },
   },
   
+  uploadImage: {
+    handler: async function (request, h) {
+      try {
+        const trail = await db.trailStore.getTrailById(request.params.id);
+        const file = request.payload.imagefile;
+
+        if (Object.keys(file).length > 0) {
+          const url = await imageStore.uploadImage(request.payload.imagefile);
+          trail.img = url;
+          await db.trailStore.updateTrail(trail, trail);
+        }
+
+        return h.redirect(`/trails/${trail._id}`);
+      } catch (err) {
+        console.log(err);
+        return h.redirect("/trails");
+      }
+    },
+
+    payload: {
+      multipart: true,
+      output: "data",
+      maxBytes: 209715200,
+      parse: true,
+    },
+  },
+
   showEditTrail: {
     handler: async function (request, h) {
       const trail = await db.trailStore.getTrailById(request.params.id);

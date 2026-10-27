@@ -66,10 +66,8 @@
         <p class="heading">Category</p>
         <p>{{trail.category}}</p>
       </div>
-    </div>
 
-    <div class="column is-half">
-      <div class="box">
+      <div class="box mt-5">
         <h2 class="title is-4">Location</h2>
 
         <div class="has-background-light p-6 has-text-centered">
@@ -81,6 +79,10 @@
           {{trail.latitude}}, {{trail.longitude}}
         </p>
       </div>
+    </div>
+
+    <div class="column is-half">
+      {{> trail-image}}
     </div>
   </div>
 </section>

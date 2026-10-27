@@ -1,5 +1,12 @@
 <div class="column is-half-tablet is-one-third-desktop">
   <article class="card is-flex is-flex-direction-column">
+    {{#if img}}
+      <div class="card-image">
+        <figure class="image is-256x256">
+          <img src="{{img}}" alt="{{name}}">
+        </figure>
+      </div>
+    {{/if}}
     <div class="card-content">
       <p class="title is-5">{{name}}</p>
       <p class="subtitle is-6">{{location}}</p>
