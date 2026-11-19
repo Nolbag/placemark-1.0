@@ -1,9 +1,12 @@
+import os from "node:os";
 import { aboutController } from "./controllers/about-controller.js";
 import { accountsController } from "./controllers/accounts-controller.js";
 import { trailController } from "./controllers/trail-controller.js";
 
 export const webRoutes = [
 
+    { method: "GET", path: "/health", handler: () => ({ status: "ok" }), options: { auth: false }, },
+    { method: "GET", path: "/instance", handler: () => ({ hostname: os.hostname(), instanceId: process.env.INSTANCE_ID || "not-set", }), options: { auth: false }, },
     { method: "GET", path: "/", config: accountsController.index },
     { method: "GET", path: "/signup", config: accountsController.showSignup },
     { method: "GET", path: "/login", config: accountsController.showLogin },
